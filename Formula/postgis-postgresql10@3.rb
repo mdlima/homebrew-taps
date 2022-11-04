@@ -75,6 +75,21 @@ class PostgisPostgresql10AT3 < Formula
     lib.install (buildpath/postgresql_stage_path/"lib").children
     share.install (buildpath/postgresql_stage_path/"share").children
 
+    # These files had to be linked manually for the installation to work:
+    # cd /opt/homebrew/Cellar/postgresql@10/10.22_3/share/postgresql@10/extension
+    # ln -s /opt/homebrew/Cellar/postgis-postgresql10@3/3.2.3_3/share/postgresql@10/extension/*
+    # find /opt/homebrew/Cellar/postgis-postgresql10@3/3.2.3_3/share/postgresql@10/extension -exec ln -s {} \;
+    # cd bin
+    # ln -s /opt/homebrew/Cellar/postgis-postgresql10@3/3.2.3_3/bin/postgis_restore.pl
+    # ln -s /opt/homebrew/Cellar/postgis-postgresql10@3/3.2.3_3/bin/postgis_proc_upgrade.pl
+    # cd ../lib
+    # ln -s /opt/homebrew/Cellar/postgis-postgresql10@3/3.2.3_3/lib/postgis_sfcgal-3.so
+    # ln -s /opt/homebrew/Cellar/postgis-postgresql10@3/3.2.3_3/lib/postgis-3.so
+    # ln -s /opt/homebrew/Cellar/postgis-postgresql10@3/3.2.3_3/lib/postgis_raster-3.so
+    # ln -s /opt/homebrew/Cellar/postgis-postgresql10@3/3.2.3_3/lib/postgis_topology-3.so
+    #
+    # ??? ln -s /opt/homebrew/Cellar/postgis-postgresql10@3/3.2.3_3/.brew/postgis-postgresql10@3.rb
+
     # Extension scripts
     bin.install %w[
       utils/create_undef.pl
