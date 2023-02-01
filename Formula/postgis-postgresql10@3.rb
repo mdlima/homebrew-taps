@@ -33,6 +33,8 @@ class PostgisPostgresql10AT3 < Formula
   fails_with gcc: "5"
 
   def postgresql
+    # TODO: figure out why Postgres@10 is not installing correctly from bottle after icu4c upgrade
+    # and intalling from source doesn't add the service to brew services
     Formula["postgresql@10"]
   end
 
@@ -77,7 +79,7 @@ class PostgisPostgresql10AT3 < Formula
 
     # These files had to be linked manually for the installation to work:
     # cd /opt/homebrew/Cellar/postgresql@10/10.22_3/share/postgresql@10/extension
-    # ln -s /opt/homebrew/Cellar/postgis-postgresql10@3/3.2.3_3/share/postgresql@10/extension/*
+    # ln -s /opt/homebrew/Cellar/postgis-postgresql10@3/3.2.3_3/share/postgresql@10/extension/* .
     # find /opt/homebrew/Cellar/postgis-postgresql10@3/3.2.3_3/share/postgresql@10/extension -exec ln -s {} \;
     # cd bin
     # ln -s /opt/homebrew/Cellar/postgis-postgresql10@3/3.2.3_3/bin/postgis_restore.pl
